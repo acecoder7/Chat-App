@@ -72,6 +72,16 @@ const Search = () => {
             date: serverTimestamp()
           }
         });
+      } else {
+      const newChatData = {
+        [combinedId]: {
+          userInfo: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL
+          },
+          date: serverTimestamp()
+        }
       }
     } catch (err) {
       console.error("Error creating chat:", err);
