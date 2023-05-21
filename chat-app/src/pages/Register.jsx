@@ -8,11 +8,14 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { useNavigate, Link } from 'react-router-dom';
 
+
 const Register = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(false);
     const DEFAULT_PROFILE_PICTURE_URL = {PImg};
 
+
+    // Handle google Sign Up 
     const handleGoogleSignUp = async () => {
         const provider = new GoogleAuthProvider();
         try {
@@ -31,7 +34,6 @@ const Register = () => {
               email: user.email,
               photoURL: user.photoURL,
             });
-    
             await setDoc(doc(db, "userChats", user.uid), {});
           }
     
@@ -41,7 +43,9 @@ const Register = () => {
         }
       };
 
-    const handleSubmit = async (e) => {
+
+      // Handle form submission
+      const handleSubmit = async (e) => {
         e.preventDefault()
         const name = e.target[0].value;
         const email = e.target[1].value;
@@ -52,8 +56,8 @@ const Register = () => {
             const res = await createUserWithEmailAndPassword(auth, email, password);
 
             const profilePictureUrl = file
-        ? await uploadProfilePicture(name, file) // Upload the selected profile picture
-        : DEFAULT_PROFILE_PICTURE_URL; // Use the default profile picture URL
+        ? await uploadProfilePicture(name, file) 
+        : DEFAULT_PROFILE_PICTURE_URL; 
 
       await updateProfile(res.user, {
         displayName: name,
@@ -74,6 +78,8 @@ const Register = () => {
     }
   };
 
+  
+  // Upload profile pic to Firebase Storage
   const uploadProfilePicture = async (name, file) => {
     try {
       const storageRef = ref(storage, name);

@@ -1,19 +1,20 @@
-import { createContext, useContext, useEffect, useeffect, useReducer, useState } from "react";
-import { auth, db } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { createContext, useContext, useReducer } from "react";
 import { AuthContext } from "./AuthContext";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 
+// Create Chat Context
 export const ChatContext = createContext();
 
+// Chat Context Provider
 export const ChatContextProvider = ({ children}) => {
     const {currentUser} = useContext(AuthContext);
 
+    // Initial State
     const INITIAL_STATE = {
         chatId: "null",
         user: {},
     };
 
+    // Reducer
     const chatReducer = (state, action)=> {
         switch (action.type) {
             case "CHANGE_USER":
@@ -27,6 +28,7 @@ export const ChatContextProvider = ({ children}) => {
         }
     }
 
+    // Use Reducer
     const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
 
     

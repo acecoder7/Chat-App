@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthContext } from "./context/AuthContext.js";
 import { auth } from "./firebase";
 import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";

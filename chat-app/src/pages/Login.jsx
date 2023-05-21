@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PImg from '../image/imginput.png';
 import GoogleIcon from '../image/google.png';
 import { useNavigate, Link } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
@@ -11,6 +10,8 @@ const Login = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(false);
 
+
+    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault()
         const email = e.target[0].value;
@@ -24,6 +25,8 @@ const Login = () => {
         }
     }
 
+
+    // Handle Google Sign In
     const handleGoogleSignIn = async () => {
       try {
         const result = await signInWithPopup(auth, googleProvider);
