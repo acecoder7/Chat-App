@@ -46,7 +46,11 @@ const Search = () => {
       const chatDocSnap = await getDoc(chatDocRef);
 
       if (!chatDocSnap.exists()) {
-        await setDoc(chatDocRef, { messages: [] });
+        const chatData = {
+        messages: []
+      };
+        await setDoc(chatDocRef, chatData);
+      }
 
         const currentUserChatRef = doc(db, "userChats", currentUser.uid);
         const userChatRef = doc(db, "userChats", user.uid);
@@ -71,18 +75,8 @@ const Search = () => {
             },
             date: serverTimestamp()
           }
-        });
-      } else {
-      const newChatData = {
-        [combinedId]: {
-          userInfo: {
-            uid: user.uid,
-            displayName: user.displayName,
-            photoURL: user.photoURL
-          },
-          date: serverTimestamp()
-        }
-      }
+        }); 
+      
     } catch (err) {
       console.error("Error creating chat:", err);
     }
