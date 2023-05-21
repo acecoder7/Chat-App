@@ -79,6 +79,21 @@
                     width: 33px;
                 }
             }
+
+            .googleSignUp{
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                justify-content: center;
+                cursor: pointer;
+
+                img{
+                    height: 20px;
+                    width: 20px;
+                    display: flex;
+                    align-items: center;
+                }
+            }
         }
 
         p{
