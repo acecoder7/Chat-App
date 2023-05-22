@@ -103,18 +103,20 @@ const Search = () => {
     setUsername("");
   };
 
-  
+
   return (
     <div className='search'>
       <div className='searchForm'>
         <input type='text' placeholder='Search...' onChange={e => setUsername(e.target.value)} onKeyDown={handleKey} value={username} />
+        <button onClick={handleSearch}>Search</button>
       </div>
       {err && <span> User not found! </span>}
       {user && (
-        <div className='userChat' onClick={handleSelect}>
+        <div className='userChat'>
           <img src={user.photoURL || Pp} alt='' />
           <div className='userChatMsg'>
             <span> {user.displayName} </span>
+            <button onClick={handleSelect}>Join</button>
           </div>
         </div>
       )}
