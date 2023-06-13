@@ -5,6 +5,9 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import './style.scss';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('G-1NR1FF7V69');
 
 function App() {
   const [initializing, setInitializing] = useState(true);
